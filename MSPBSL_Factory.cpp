@@ -180,11 +180,11 @@ MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(string initString)
 		{
 			theBSLConnection = new MSPBSL_Connection_v1_6x( initString );
 		}
-		else if(initString.find( UART_202_STRING ) !=string::npos )
+		else if(initString.find( UART_202_STRING ) != string::npos )
 		{
 			theBSLConnection = new MSPBSL_Connection_v2_xx( initString );
 		}
-		else if(initString.find( UART_21X_STRING ) !=string::npos )
+		else if(initString.find( UART_21X_STRING ) != string::npos )
 		{
 			theBSLConnection = new MSPBSL_Connection_v2_1x( initString );
 		}
@@ -200,6 +200,10 @@ MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(string initString)
 		p->setPhysicalInterface( s );
 		theBSLConnection->setPacketHandler(p);
 	} // all 1xx/2xx/4xx UART BSLs handled
+	else
+	{
+		return NULL;	//no init String was found in the DeviceList.txt
+	}
 
 >>>>>>> Implemented 1/2/4xx-Options in Factory, Started DeviceList
 	return theBSLConnection;
