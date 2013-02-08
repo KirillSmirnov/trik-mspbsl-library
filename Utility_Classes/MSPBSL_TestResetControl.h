@@ -69,7 +69,7 @@ public:
 	}; // constructor
 	boost::system::error_code store( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error ) const
 	{
-        #if defined( MSPBSL_ON_WIN )
+#if defined( MSPBSL_ON_WIN )
 		if( state )
 		{
 			storage.fRtsControl = RTS_CONTROL_DISABLE;
@@ -78,9 +78,14 @@ public:
 		{	
 			storage.fRtsControl = RTS_CONTROL_ENABLE;
 		}
+<<<<<<< c1ce2670c1f59539b30a6e78a40d9565dc287cff
         #elif defined ( MSPBSL_ON_LINUX )
+=======
+#elif defined (MSPBSL_ON_LINUX)
+>>>>>>> Temporary disable UART - the code seems to be windows-only
 		// linux currently untested
 		uint16_t flags;
+#if 0
 		ioctl(fd, TIOCMGET, &flags);
 		if( state )
 		{
@@ -94,13 +99,14 @@ public:
 		}
 		//tcsetattr( fd, TCSANOW, storage );
 		ioctl(fd, TIOCMSET, &flags);
-        #endif  
+#endif
+#endif  
 		return error;
 	}; // store
 	
 	boost::system::error_code load( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error)
 	{
-        #if defined( MSPBSL_ON_WIN )
+#if defined( MSPBSL_ON_WIN )
 		if (storage.fRtsControl == RTS_CONTROL_ENABLE)
 		{
 			state = 0;
@@ -110,7 +116,12 @@ public:
 			state = 1;
 		}
 		
+<<<<<<< c1ce2670c1f59539b30a6e78a40d9565dc287cff
         #elif defined ( MSPBSL_ON_LINUX )
+=======
+#elif defined ( MSPBSL_ON_LINUX )
+#if 0
+>>>>>>> Temporary disable UART - the code seems to be windows-only
 		uint16_t flags;
 		ioctl(fd, TIOCMGET, &flags);
 		if( flags & TIOCM_RTS )
@@ -121,7 +132,8 @@ public:
 		{
 			state = 1;
 		}
-        #endif  
+#endif
+#endif  
 		return error;
 	}; // load
 
@@ -132,13 +144,13 @@ class RESETControl
 private:
 	uint16_t state;
 public: 
-	RESETControl::RESETControl( uint16_t initState )
+	RESETControl( uint16_t initState )
 	{
 		state = initState;
 	};  // constructor
 	boost::system::error_code store( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error ) const
 	{
-        #if defined( MSPBSL_ON_WIN )
+#if defined( MSPBSL_ON_WIN )
 		if( state )
 		{
 			storage.fDtrControl = DTR_CONTROL_ENABLE;
@@ -147,7 +159,12 @@ public:
 		{	
 			storage.fDtrControl = DTR_CONTROL_DISABLE;
 		}
+<<<<<<< c1ce2670c1f59539b30a6e78a40d9565dc287cff
         #elif defined ( MSPBSL_ON_LINUX )
+=======
+#elif defined ( MSPBSL_ON_LINUX )
+#if 0
+>>>>>>> Temporary disable UART - the code seems to be windows-only
 		// linux currently untested
 		uint16_t flags;
 		ioctl(fd, TIOCMGET, &flags);
@@ -163,14 +180,14 @@ public:
 		}
 		//tcsetattr( fd, TCSANOW, storage );
 		ioctl(fd, TIOCMSET, &flags);
-
-        #endif  
+#endif
+#endif  
 		return error;
 	}; // store
 	
 	boost::system::error_code load( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error)
 	{
-        #if defined( MSPBSL_ON_WIN )
+#if defined( MSPBSL_ON_WIN )
 		if (storage.fDtrControl == DTR_CONTROL_ENABLE)
 		{
 			state = 1;
@@ -180,8 +197,14 @@ public:
 			state = 0;
 		}
 		
+<<<<<<< c1ce2670c1f59539b30a6e78a40d9565dc287cff
         #elif defined ( MSPBSL_ON_LINUX )
 		uint16_t flags;
+=======
+#elif defined ( MSPBSL_ON_LINUX )
+#if 0
+    uint16_t flags;
+>>>>>>> Temporary disable UART - the code seems to be windows-only
 		ioctl(fd, TIOCMGET, &flags);
 		if( flags & TIOCM_DTR )
 		{
@@ -191,7 +214,8 @@ public:
 		{
 			state = 0;
 		}
-        #endif  
+#endif
+#endif  
 		return error;
 	}; // load
 
