@@ -140,7 +140,7 @@ uint16_t MSPBSL_Connection5xx::eraseSegment(uint32_t addr)
 uint16_t MSPBSL_Connection5xx::TX_BufferSize(uint16_t* bufSize)
 {
   uint16_t retValue;
-  uint8_t command[1];
+  uint8_t command[4];
   uint8_t rxBuf[4];
   command[0]=TX_BUFFER_SIZE_COMMAND;
   retValue = thePacketHandler->TX_Packet(command, 1);
