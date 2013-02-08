@@ -63,13 +63,14 @@ class TESTControl
 private:
 	uint16_t state;
 public: 
-	TESTControl::TESTControl( uint16_t initState )
+	TESTControl( uint16_t initState )
 	{
 		state = initState;
 	}; // constructor
-	boost::system::error_code TESTControl::store( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error ) const
+
+  boost::system::error_code store( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error ) const
 	{
-        #if defined( MSPBSL_ON_WIN )
+#if defined( MSPBSL_ON_WIN )
 		if( state )
 		{
 			storage.fRtsControl = RTS_CONTROL_DISABLE;
@@ -78,9 +79,10 @@ public:
 		{	
 			storage.fRtsControl = RTS_CONTROL_ENABLE;
 		}
-        #else if defined ( MSPBSL_ON_LINUX )
+#elif defined (MSPBSL_ON_LINUX)
 		// linux currently untested
 		uint16_t flags;
+#if 0
 		ioctl(fd, TIOCMGET, &flags);
 		if( state )
 		{
@@ -94,13 +96,14 @@ public:
 		}
 		//tcsetattr( fd, TCSANOW, storage );
 		ioctl(fd, TIOCMSET, &flags);
-        #endif  
+#endif
+#endif  
 		return error;
 	}; // store
 	
-	boost::system::error_code TESTControl::load( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error)
+	boost::system::error_code load( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error)
 	{
-        #if defined( MSPBSL_ON_WIN )
+#if defined( MSPBSL_ON_WIN )
 		if (storage.fRtsControl == RTS_CONTROL_ENABLE)
 		{
 			state = 0;
@@ -110,7 +113,8 @@ public:
 			state = 1;
 		}
 		
-        #else if defined ( MSPBSL_ON_LINUX )
+#elif defined ( MSPBSL_ON_LINUX )
+#if 0
 		uint16_t flags;
 		ioctl(fd, TIOCMGET, &flags);
 		if( flags & TIOCM_RTS )
@@ -121,7 +125,8 @@ public:
 		{
 			state = 1;
 		}
-        #endif  
+#endif
+#endif  
 		return error;
 	}; // load
 
@@ -132,13 +137,13 @@ class RESETControl
 private:
 	uint16_t state;
 public: 
-	RESETControl::RESETControl( uint16_t initState )
+	RESETControl( uint16_t initState )
 	{
 		state = initState;
 	};  // constructor
-	boost::system::error_code RESETControl::store( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error ) const
+	boost::system::error_code store( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error ) const
 	{
-        #if defined( MSPBSL_ON_WIN )
+#if defined( MSPBSL_ON_WIN )
 		if( state )
 		{
 			storage.fDtrControl = DTR_CONTROL_ENABLE;
@@ -147,7 +152,8 @@ public:
 		{	
 			storage.fDtrControl = DTR_CONTROL_DISABLE;
 		}
-        #else if defined ( MSPBSL_ON_LINUX )
+#elif defined ( MSPBSL_ON_LINUX )
+#if 0
 		// linux currently untested
 		uint16_t flags;
 		ioctl(fd, TIOCMGET, &flags);
@@ -163,14 +169,14 @@ public:
 		}
 		//tcsetattr( fd, TCSANOW, storage );
 		ioctl(fd, TIOCMSET, &flags);
-
-        #endif  
+#endif
+#endif  
 		return error;
 	}; // store
 	
-	boost::system::error_code RESETControl::load( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error)
+	boost::system::error_code load( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error)
 	{
-        #if defined( MSPBSL_ON_WIN )
+#if defined( MSPBSL_ON_WIN )
 		if (storage.fDtrControl == DTR_CONTROL_ENABLE)
 		{
 			state = 1;
@@ -180,8 +186,9 @@ public:
 			state = 0;
 		}
 		
-        #else if defined ( MSPBSL_ON_LINUX )
-		uint16_t flags;
+#elif defined ( MSPBSL_ON_LINUX )
+#if 0
+    uint16_t flags;
 		ioctl(fd, TIOCMGET, &flags);
 		if( flags & TIOCM_DTR )
 		{
@@ -191,7 +198,8 @@ public:
 		{
 			state = 0;
 		}
-        #endif  
+#endif
+#endif  
 		return error;
 	}; // load
 
