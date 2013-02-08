@@ -104,7 +104,7 @@ uint16_t MSPBSL_Connection::loadFile(string datalocation)
 	uint8_t lastblock=0;
 	string ignore = "\b\t\n\r\f\v "; //ignore those characters if they are between the strings. 
 	string hexchars = "0123456789abcdefABCDEF";
-	ifstream txt(datalocation, ifstream::out); 
+	ifstream txt(datalocation.c_str(), ifstream::out); 
 	stringstream s;
 	s << txt.rdbuf();
 	string file = s.str();
