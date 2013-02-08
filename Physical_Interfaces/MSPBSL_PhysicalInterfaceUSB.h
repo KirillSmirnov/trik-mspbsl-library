@@ -39,7 +39,7 @@
 #pragma once
 #include <string>
 #include "MSPBSL_PhysicalInterface.h"
-#include "hidapi.h"
+#include <hidapi/hidapi.h>
 
 
 //using namespace std;
