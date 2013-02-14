@@ -56,4 +56,8 @@ add_library(msp430bsl
 
 add_executable(example-bsl
                main.cpp)
+
 target_link_libraries(example-bsl msp430bsl ${HIDAPI_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} -lpthread -lm )
+
+install(TARGETS msp430bsl DESTINATION ${LIB_INSTALL_PATH})
+
