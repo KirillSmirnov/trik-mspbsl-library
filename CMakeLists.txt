@@ -60,5 +60,21 @@ add_executable(example-bsl
 
 target_link_libraries(example-bsl msp430bsl ${HIDAPI_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} -lpthread -lm )
 
-install(TARGETS msp430bsl DESTINATION ${LIB_INSTALL_PATH})
+
+set(CMAKE_INSTALL_PREFIX /usr)
+set(CPACK_BINARY_RPM ON)
+set(CPACK_SYSTEM_NAME i686)
+
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MSP Bsl Library")
+set(CPACK_PACKAGE_VERSION 1.0.0)
+include(CPack)
+
+install(TARGETS msp430bsl DESTINATION lib)
+install(TARGETS example-bsl DESTINATION sbin)
+install(FILES  DESTINATION include)
+
+install(FILES MSPBSL_Factory.h
+        DESTINATION include
+        PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
+
 
