@@ -39,7 +39,8 @@ endif()
 
 
 include_directories(Connections Packet_Handlers Physical_Interfaces Utility_Classes)
-add_library(msp430bsl
+
+add_library(msp430bsl SHARED
   MSPBSL_Factory.cpp
   Connections/MSPBSL_Connection.cpp
   Connections/MSPBSL_Connection5438Family.cpp
@@ -55,7 +56,7 @@ add_library(msp430bsl
 )
 
 add_executable(example-bsl
-               main.cpp)
+               Example/main.cpp)
 
 target_link_libraries(example-bsl msp430bsl ${HIDAPI_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} -lpthread -lm )
 
