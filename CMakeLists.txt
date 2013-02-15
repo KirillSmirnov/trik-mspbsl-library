@@ -37,6 +37,11 @@ else(LIBUSB_FOUND)
   message(STATUS "USB Not Supported")
 endif()
 
+set( PROJECT_INCLUDE_DIR 
+	${PROJECT_SOURCE_DIR}/Connections 
+	${PROJECT_SOURCE_DIR}/Packet_Handlers 
+	${PROJECT_SOURCE_DIR}/Physical_Interfaces 
+	${PROJECT_SOURCE_DIR}/Utility_Classes )
 
 include_directories(Connections Packet_Handlers Physical_Interfaces Utility_Classes)
 
@@ -54,6 +59,7 @@ add_library(msp430bsl SHARED
   Utility_Classes/MSPBSL_CRCEngine.cpp
   ${USB_SRC}
 )
+set_target_properties(msp430bsl PROPERTIES VERSION 1.0.0 SOVERSION 1)
 
 add_executable(example-bsl
                Example/main.cpp)
@@ -73,8 +79,12 @@ install(TARGETS msp430bsl DESTINATION lib)
 install(TARGETS example-bsl DESTINATION sbin)
 install(FILES  DESTINATION include)
 
-install(FILES MSPBSL_Factory.h
-        DESTINATION include
-        PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
+
+install(DIRECTORY ${PROJECT_INCLUDE_DIR}/
+    DESTINATION "include"
+    FILES_MATCHING
+    PATTERN "*.h"
+    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
+
 
 
