@@ -42,7 +42,7 @@ set(PROJECT_INCLUDE_DIR Connections Packet_Handlers Physical_Interfaces Utility_
 include_directories(${PROJECT_INCLUDE_DIR})
 
 add_library(msp430bsl SHARED
-  MSPBSL_Factory.cpp
+  Connections/MSPBSL_Factory.cpp
   Connections/MSPBSL_Connection.cpp
   Connections/MSPBSL_Connection5438Family.cpp
   Connections/MSPBSL_Connection5xx.cpp
