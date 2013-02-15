@@ -73,10 +73,7 @@ include(CPack)
 
 install(TARGETS msp430bsl DESTINATION lib)
 install(TARGETS example-bsl DESTINATION sbin)
-install(FILES  DESTINATION include)
-
-
-install(DIRECTORY ${PROJECT_INCLUDE_DIR} ${PROJECT_SOURCE_DIR}
+install(DIRECTORY ${PROJECT_INCLUDE_DIR}
     DESTINATION include
     FILES_MATCHING
     PATTERN "*.h"
