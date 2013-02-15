@@ -37,13 +37,9 @@ else(LIBUSB_FOUND)
   message(STATUS "USB Not Supported")
 endif()
 
-set( PROJECT_INCLUDE_DIR 
-	${PROJECT_SOURCE_DIR}/Connections 
-	${PROJECT_SOURCE_DIR}/Packet_Handlers 
-	${PROJECT_SOURCE_DIR}/Physical_Interfaces 
-	${PROJECT_SOURCE_DIR}/Utility_Classes )
+set(PROJECT_INCLUDE_DIR Connections Packet_Handlers Physical_Interfaces Utility_Classes )
 
-include_directories(Connections Packet_Handlers Physical_Interfaces Utility_Classes)
+include_directories(${PROJECT_INCLUDE_DIR})
 
 add_library(msp430bsl SHARED
   MSPBSL_Factory.cpp
@@ -81,7 +77,7 @@ install(FILES  DESTINATION include)
 
 
 install(DIRECTORY ${PROJECT_INCLUDE_DIR}/
-    DESTINATION "include"
+    DESTINATION include
     FILES_MATCHING
     PATTERN "*.h"
     PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
