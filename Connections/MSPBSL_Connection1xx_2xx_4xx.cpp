@@ -50,13 +50,13 @@
 *        
 * \return a MSPBSL_Connection1/2/4xx class
 ******************************************************************************/
-MSPBSL_Connection1xx_2xx_4xx::MSPBSL_Connection1xx_2xx_4xx(string initString)
+MSPBSL_Connection1xx_2xx_4xx::MSPBSL_Connection1xx_2xx_4xx(std::string initString)
 	: thePacketHandler1xx_2xx_4xx(0)
 {
-	string BUG_DESIGNATOR_1xx_2xx_4xx = "BUG:";
-    string bugList_1xx_2xx_4xx = "";
+	std::string BUG_DESIGNATOR_1xx_2xx_4xx = "BUG:";
+    std::string bugList_1xx_2xx_4xx = "";
 	// currently no bugs
-	if( initString.find(BUG_DESIGNATOR_1xx_2xx_4xx) != string::npos)
+	if( initString.find(BUG_DESIGNATOR_1xx_2xx_4xx) != std::string::npos)
 	{
 		int bugStart = initString.find(BUG_DESIGNATOR_1xx_2xx_4xx)+BUG_DESIGNATOR_1xx_2xx_4xx.size();
 		int bugEnd = initString.find(' ',  bugStart );
@@ -296,7 +296,7 @@ uint16_t MSPBSL_Connection1xx_2xx_4xx::TX_DataBlock( uint8_t* data, uint32_t sta
 *        
 * \return the value returned by the connected BSL, or underlying connection layers
 ******************************************************************************/
-uint16_t MSPBSL_Connection1xx_2xx_4xx::TX_BSL_Version(string& versionString)
+uint16_t MSPBSL_Connection1xx_2xx_4xx::TX_BSL_Version(std::string& versionString)
 {
 
   uint16_t retValue = ACK;

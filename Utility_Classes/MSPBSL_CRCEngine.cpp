@@ -57,7 +57,7 @@ uint16_t byteCount;
 *        
 * \return a BSL430_CRC_Engine class
 ******************************************************************************/
-MSPBSL_CRCEngine::MSPBSL_CRCEngine(string initString)
+MSPBSL_CRCEngine::MSPBSL_CRCEngine(std::string initString)
 {
 
 	if( initString.compare("5/6xx") == 0 ){

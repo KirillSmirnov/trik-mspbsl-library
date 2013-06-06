@@ -39,10 +39,10 @@
 #include "MSPBSL_PhysicalInterfaceSerialUART.h"
 #include "MSPBSL_TestResetControl.h"
 
-string COM_DESIGNATOR = "COM:";
-string BAUD_DESIGNATOR = "BAUD:";
-string PARITY_DESIGNATOR = "PARITY:";
-string INVOKE_DESIGNATOR = "INVOKE:";
+std::string COM_DESIGNATOR = "COM:";
+std::string BAUD_DESIGNATOR = "BAUD:";
+std::string PARITY_DESIGNATOR = "PARITY:";
+std::string INVOKE_DESIGNATOR = "INVOKE:";
 
 
 int invokeMethod = STANDARD_INVOKE;
@@ -75,7 +75,7 @@ const char *PORT = "dev/ttyS3";
 *
 * \return a MSPBSL_PhysicalInterfaceSerialUART class
 ******************************************************************************/
-MSPBSL_PhysicalInterfaceSerialUART::MSPBSL_PhysicalInterfaceSerialUART(string initString )
+MSPBSL_PhysicalInterfaceSerialUART::MSPBSL_PhysicalInterfaceSerialUART(std::string initString )
 {
 	// String format...
 	// COM:COM1
@@ -83,10 +83,10 @@ MSPBSL_PhysicalInterfaceSerialUART::MSPBSL_PhysicalInterfaceSerialUART(string in
 	// BUG:xxx,xxx,xxx where xxx can be:
 	//     BSL_XXXX - BSL invoke bug #XXXX
 
-	string Com = "\\\\.\\";
-	string Baud = "BAUD:9600";
-	string Parity = "EVEN";
-	if( initString.find(COM_DESIGNATOR) != string::npos)
+	std::string Com = "\\\\.\\";
+	std::string Baud = "BAUD:9600";
+	std::string Parity = "EVEN";
+	if( initString.find(COM_DESIGNATOR) != std::string::npos)
 	{
 		uint16_t comStart = initString.find(COM_DESIGNATOR)+COM_DESIGNATOR.size();
 		uint16_t comEnd = initString.find(' ',  comStart );
@@ -98,13 +98,13 @@ MSPBSL_PhysicalInterfaceSerialUART::MSPBSL_PhysicalInterfaceSerialUART(string in
 	{
 		//TODO: search COMs?
 	}
-	if( initString.find(PARITY_DESIGNATOR) != string::npos)
+	if( initString.find(PARITY_DESIGNATOR) != std::string::npos)
 	{
 		uint16_t parityStart = initString.find(PARITY_DESIGNATOR)+PARITY_DESIGNATOR.size();
 		uint16_t parityEnd = initString.find(' ',  parityStart );
 		Parity = initString.substr( parityStart, parityEnd-parityStart);
 	}
-	if( initString.find(BAUD_DESIGNATOR) != string::npos)
+	if( initString.find(BAUD_DESIGNATOR) != std::string::npos)
 	{
 		//int baudStart = initString.find(BAUD_DESIGNATOR)+BAUD_DESIGNATOR.size();
 		uint16_t baudStart = initString.find(BAUD_DESIGNATOR);
@@ -113,11 +113,11 @@ MSPBSL_PhysicalInterfaceSerialUART::MSPBSL_PhysicalInterfaceSerialUART(string in
 		//Baud = initString.substr( (initString.find(BAUD_DESIGNATOR))+BAUD_DESIGNATOR.size(), initString.find(" ",  initString.find(BAUD_DESIGNATOR) ));
 	}// found COM port
 	// else default = 9600
-	if( initString.find(INVOKE_DESIGNATOR) != string::npos)
+	if( initString.find(INVOKE_DESIGNATOR) != std::string::npos)
 	{
 		uint16_t invokeStart = initString.find(INVOKE_DESIGNATOR)+INVOKE_DESIGNATOR.size();
 		uint16_t invokeEnd = initString.find(' ',  invokeStart );
-		string sub = initString.substr( invokeStart, invokeEnd-invokeStart);
+		std::string sub = initString.substr( invokeStart, invokeEnd-invokeStart);
 		//invokeMethod = atoi(sub.c_str());
 
 		invokeMethod = 0x01;	//STANDART_INVOKE
@@ -290,9 +290,9 @@ uint16_t MSPBSL_PhysicalInterfaceSerialUART::RX_Bytes( uint8_t* buf, uint16_t nu
 * \return the result of the transfer, 0 meaning success, otherwise an error code
 *         is returned
 ******************************************************************************/
-uint16_t MSPBSL_PhysicalInterfaceSerialUART::physicalInterfaceCommand( string command )
+uint16_t MSPBSL_PhysicalInterfaceSerialUART::physicalInterfaceCommand( std::string command )
 {
-	if( command.find(BAUD_DESIGNATOR) != string::npos)
+	if( command.find(BAUD_DESIGNATOR) != std::string::npos)
 	{
 		//4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000 and 256000
 		if( command.compare("BAUD:4800")==0)
@@ -355,7 +355,7 @@ uint16_t MSPBSL_PhysicalInterfaceSerialUART::physicalInterfaceCommand( string co
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_PhysicalInterfaceSerialUART::getErrorInformation( uint16_t err )
+std::string MSPBSL_PhysicalInterfaceSerialUART::getErrorInformation( uint16_t err )
 {
 	switch ( err )
 	{

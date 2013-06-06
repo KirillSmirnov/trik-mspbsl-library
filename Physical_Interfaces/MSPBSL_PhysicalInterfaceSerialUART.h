@@ -65,7 +65,7 @@ class MSPBSL_PhysicalInterfaceSerialUART : public MSPBSL_PhysicalInterface
 {
 public:
 
-	MSPBSL_PhysicalInterfaceSerialUART(string initString);
+	MSPBSL_PhysicalInterfaceSerialUART(std::string initString);
 
 	virtual ~MSPBSL_PhysicalInterfaceSerialUART(void);
 
@@ -77,9 +77,9 @@ public:
 
     uint16_t RX_Bytes( uint8_t* buf, uint16_t numBytes);
 
-	uint16_t physicalInterfaceCommand( string command );
+	uint16_t physicalInterfaceCommand( std::string command );
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 private:
     io_service io;

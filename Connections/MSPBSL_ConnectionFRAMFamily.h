@@ -42,12 +42,12 @@
 class MSPBSL_ConnectionFRAMFamily : public MSPBSL_Connection5xxUART
 {
 public:
-	MSPBSL_ConnectionFRAMFamily(string initString);
+	MSPBSL_ConnectionFRAMFamily(std::string initString);
 	virtual ~MSPBSL_ConnectionFRAMFamily(void);
 
 	uint16_t massErase(void);
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 };
 

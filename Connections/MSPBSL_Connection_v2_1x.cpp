@@ -44,7 +44,7 @@
 *        
 * \return a MSPBSL_Connection_v2_1x class
 ******************************************************************************/
-MSPBSL_Connection_v2_1x::MSPBSL_Connection_v2_1x(string initString) : MSPBSL_Connection_v2_xx( initString)
+MSPBSL_Connection_v2_1x::MSPBSL_Connection_v2_1x(std::string initString) : MSPBSL_Connection_v2_xx( initString)
 {
 }
 
@@ -212,7 +212,7 @@ uint16_t MSPBSL_Connection_v2_1x::TX_DataBlock( uint8_t* data, uint32_t startAdd
 * \return the value returned by the connected BSL, or underlying connection layers
 ******************************************************************************/
 
-uint16_t MSPBSL_Connection_v2_1x::TX_BSL_Version(string& versionString)
+uint16_t MSPBSL_Connection_v2_1x::TX_BSL_Version(std::string& versionString)
 {
 	uint16_t retValue = 0;
 	retValue |= MSPBSL_Connection_v2_1x::setMemOffset(0);
@@ -366,7 +366,7 @@ uint16_t MSPBSL_Connection_v2_1x::setMemOffset(uint16_t OffsetValue)
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_Connection_v2_1x::getErrorInformation( uint16_t err )
+std::string MSPBSL_Connection_v2_1x::getErrorInformation( uint16_t err )
 {
 	return MSPBSL_Connection1xx_2xx_4xx::getErrorInformation( err );
 }

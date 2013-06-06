@@ -43,12 +43,12 @@ class MSPBSL_Connection5xxUSB : public MSPBSL_Connection5xx
 {
 public:
 
-	MSPBSL_Connection5xxUSB(string initString);
+	MSPBSL_Connection5xxUSB(std::string initString);
 	virtual ~MSPBSL_Connection5xxUSB(void);
 
 	uint16_t loadRAM_BSL(void);
 	uint16_t loadRAM_BSL(uint8_t* password);
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 };
 

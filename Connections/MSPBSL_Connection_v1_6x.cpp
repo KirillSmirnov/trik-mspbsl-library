@@ -44,7 +44,7 @@
 *        
 * \return a MSPBSL_Connection_v1_6x class
 ******************************************************************************/
-MSPBSL_Connection_v1_6x::MSPBSL_Connection_v1_6x(string initString) : MSPBSL_Connection1xx_2xx_4xx( initString)
+MSPBSL_Connection_v1_6x::MSPBSL_Connection_v1_6x(std::string initString) : MSPBSL_Connection1xx_2xx_4xx( initString)
 {
 }
 
@@ -107,7 +107,7 @@ uint16_t MSPBSL_Connection_v1_6x::changeBaudrate( uint8_t D1, uint8_t D2, uint8_
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_Connection_v1_6x::getErrorInformation( uint16_t err )
+std::string MSPBSL_Connection_v1_6x::getErrorInformation( uint16_t err )
 {
 	return MSPBSL_Connection1xx_2xx_4xx::getErrorInformation( err );
 }

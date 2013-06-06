@@ -44,7 +44,7 @@
 *        
 * \return a MSPBSL_Connection5xxUART class
 ******************************************************************************/
-MSPBSL_Connection5xxUART::MSPBSL_Connection5xxUART(string initString) : MSPBSL_Connection5xx( initString)
+MSPBSL_Connection5xxUART::MSPBSL_Connection5xxUART(std::string initString) : MSPBSL_Connection5xx( initString)
 {
 }
 
@@ -65,7 +65,7 @@ MSPBSL_Connection5xxUART::~MSPBSL_Connection5xxUART(void)
 ******************************************************************************/
 uint16_t MSPBSL_Connection5xxUART::setBaudRate(uint32_t baudRate)
 {
-	string baudString;
+	std::string baudString;
 	uint16_t retValue;
 	uint8_t packet[2] = {CHANGE_BAUD_RATE_COMMAND, BAUD_9600_NUMBER};
 	if( (baudRate == 4800)||(baudRate == BAUD_4800_NUMBER) )
@@ -122,7 +122,7 @@ uint16_t MSPBSL_Connection5xxUART::setBaudRate(uint32_t baudRate)
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_Connection5xxUART::getErrorInformation( uint16_t err )
+std::string MSPBSL_Connection5xxUART::getErrorInformation( uint16_t err )
 {
 	switch( err)
 	{

@@ -48,7 +48,7 @@
 *
 * \return a MSPBSL_Connection5xxUSB class
 ******************************************************************************/
-MSPBSL_Connection5xxUSB::MSPBSL_Connection5xxUSB(string initString) : MSPBSL_Connection5xx( initString)
+MSPBSL_Connection5xxUSB::MSPBSL_Connection5xxUSB(std::string initString) : MSPBSL_Connection5xx( initString)
 {
 }
 
@@ -184,7 +184,7 @@ uint16_t MSPBSL_Connection5xxUSB::loadRAM_BSL(uint8_t* password)
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_Connection5xxUSB::getErrorInformation( uint16_t err )
+std::string MSPBSL_Connection5xxUSB::getErrorInformation( uint16_t err )
 {
 	return MSPBSL_Connection5xx::getErrorInformation( err );
 }

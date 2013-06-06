@@ -44,7 +44,7 @@
 *        
 * \return a MSPBSL_Connection_v1_3x class
 ******************************************************************************/
-MSPBSL_Connection_v1_3x::MSPBSL_Connection_v1_3x(string initString) : MSPBSL_Connection_v1_4x( initString)
+MSPBSL_Connection_v1_3x::MSPBSL_Connection_v1_3x(std::string initString) : MSPBSL_Connection_v1_4x( initString)
 {
 }
 
@@ -101,7 +101,7 @@ uint16_t MSPBSL_Connection_v1_3x::RX_DataBlock( uint8_t* data, uint32_t startAdd
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_Connection_v1_3x::getErrorInformation( uint16_t err )
+std::string MSPBSL_Connection_v1_3x::getErrorInformation( uint16_t err )
 {
 	return MSPBSL_Connection1xx_2xx_4xx::getErrorInformation( err );
 }

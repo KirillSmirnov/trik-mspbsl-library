@@ -48,10 +48,10 @@ using boost::bad_lexical_cast;
 #define MSPBSL_STANDARD_USB_VID 0x2047         // Vendor ID, 0x2047 for Texas Instruments Incorporated (MSP430 Group)
 #define MSPBSL_STANDARD_USB_PID 0x0200         // Product ID (PID), 0x0200 for F552x HID BSL stack
 
-string VID_DESIGNATOR_HEX = "VID:0x";
-string PID_DESIGNATOR_HEX = "PID:0x";
-string VID_DESIGNATOR = "VID:";
-string PID_DESIGNATOR = "PID:";
+std::string VID_DESIGNATOR_HEX = "VID:0x";
+std::string PID_DESIGNATOR_HEX = "PID:0x";
+std::string VID_DESIGNATOR = "VID:";
+std::string PID_DESIGNATOR = "PID:";
 
 uint16_t myVID = MSPBSL_STANDARD_USB_VID;
 uint16_t myPID = MSPBSL_STANDARD_USB_PID;
@@ -66,12 +66,12 @@ uint16_t myPID = MSPBSL_STANDARD_USB_PID;
 *
 * \return a MSPBSL_PhysicalInterfaceUSB class
 ******************************************************************************/
-MSPBSL_PhysicalInterfaceUSB::MSPBSL_PhysicalInterfaceUSB(string initString)
+MSPBSL_PhysicalInterfaceUSB::MSPBSL_PhysicalInterfaceUSB(std::string initString)
 {
-	string tempVID = "";
-	string tempPID = "";
+	std::string tempVID = "";
+	std::string tempPID = "";
 	
-	if( initString.find(VID_DESIGNATOR_HEX) != string::npos)
+	if( initString.find(VID_DESIGNATOR_HEX) != std::string::npos)
 	{
 		int vidStart = initString.find(VID_DESIGNATOR_HEX)+VID_DESIGNATOR_HEX.size();
 		int vidEnd = initString.find(' ',  vidStart );
@@ -81,7 +81,7 @@ MSPBSL_PhysicalInterfaceUSB::MSPBSL_PhysicalInterfaceUSB(string initString)
 		ss << std::hex << tempVID;
 		ss >> myVID;
 	}
-	else if( initString.find(VID_DESIGNATOR) != string::npos)
+	else if( initString.find(VID_DESIGNATOR) != std::string::npos)
 	{
 
 		int vidStart = initString.find(VID_DESIGNATOR)+VID_DESIGNATOR.size();
@@ -93,7 +93,7 @@ MSPBSL_PhysicalInterfaceUSB::MSPBSL_PhysicalInterfaceUSB(string initString)
 		ss >> myVID;
 	}
 
-	if( initString.find(PID_DESIGNATOR_HEX) != string::npos)
+	if( initString.find(PID_DESIGNATOR_HEX) != std::string::npos)
 	{
 
 		int pidStart = initString.find(PID_DESIGNATOR_HEX)+PID_DESIGNATOR_HEX.size();
@@ -104,7 +104,7 @@ MSPBSL_PhysicalInterfaceUSB::MSPBSL_PhysicalInterfaceUSB(string initString)
 		ss << std::hex << tempPID;
 		ss >> myPID;
 	}
-	else if( initString.find(PID_DESIGNATOR) != string::npos)
+	else if( initString.find(PID_DESIGNATOR) != std::string::npos)
 	{
 
 		int pidStart = initString.find(PID_DESIGNATOR)+PID_DESIGNATOR.size();
@@ -197,10 +197,10 @@ uint16_t MSPBSL_PhysicalInterfaceUSB::RX_Bytes( uint8_t* buf, uint16_t numBytes 
 * \return the result of the command, 0 meaning success, otherwise an error code
 *         is returned
 ******************************************************************************/
-uint16_t MSPBSL_PhysicalInterfaceUSB::physicalInterfaceCommand( string command )
+uint16_t MSPBSL_PhysicalInterfaceUSB::physicalInterfaceCommand( std::string command )
 {
 
-	if (command.find( ENUMERATE_COMMAND ) !=string::npos)                  // if we wish to enumerate
+	if (command.find( ENUMERATE_COMMAND ) !=std::string::npos)                  // if we wish to enumerate
 	{
 		MSPBSL_Device = hid_open(myVID, myPID, NULL);
      	
@@ -214,7 +214,7 @@ uint16_t MSPBSL_PhysicalInterfaceUSB::physicalInterfaceCommand( string command )
 		}
 	}
 	
-	if (command.find(DE_ENUMERATE_COMMAND) != string::npos)                  // if we wish to enumerate
+	if (command.find(DE_ENUMERATE_COMMAND) != std::string::npos)                  // if we wish to enumerate
 	{
 		hid_close(MSPBSL_Device);
      	
@@ -244,7 +244,7 @@ void MSPBSL_PhysicalInterfaceUSB::invokeBSL(){} // not used in USB... possibly u
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_PhysicalInterfaceUSB::getErrorInformation( uint16_t err )
+std::string MSPBSL_PhysicalInterfaceUSB::getErrorInformation( uint16_t err )
 {
 	switch ( err )
 	{

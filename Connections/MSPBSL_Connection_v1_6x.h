@@ -47,12 +47,12 @@ class MSPBSL_Connection_v1_6x : public MSPBSL_Connection1xx_2xx_4xx
 {
 public:
 
-	MSPBSL_Connection_v1_6x(string initString);
+	MSPBSL_Connection_v1_6x(std::string initString);
 	virtual ~MSPBSL_Connection_v1_6x(void);
 
 	// uint16_t eraseSegment(uint32_t addr); //Workaround was no good idea -> size of info segments differ between devices.
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 
 	uint16_t changeBaudrate( uint8_t D1, uint8_t D2, uint8_t D3 );  //only available in derived classes >1.6x

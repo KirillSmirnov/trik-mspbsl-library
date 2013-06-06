@@ -48,12 +48,12 @@ class MSPBSL_Connection_v1_3x : public MSPBSL_Connection_v1_4x
 {
 public:
 
-	MSPBSL_Connection_v1_3x(string initString);
+	MSPBSL_Connection_v1_3x(std::string initString);
 	virtual ~MSPBSL_Connection_v1_3x(void);
 
 	virtual uint16_t RX_DataBlock( uint8_t* data, uint32_t startAddr16, uint32_t numBytes ); //includes verification
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 
 };

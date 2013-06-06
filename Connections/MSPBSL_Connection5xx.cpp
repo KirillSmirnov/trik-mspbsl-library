@@ -50,10 +50,10 @@ string bugList = "";
 *        
 * \return a MSPBSL_Connection5xx class
 ******************************************************************************/
-MSPBSL_Connection5xx::MSPBSL_Connection5xx(string initString)
+MSPBSL_Connection5xx::MSPBSL_Connection5xx(std::string initString)
 {
 	// currently no bugs
-	if( initString.find(BUG_DESIGNATOR) != string::npos)
+	if( initString.find(BUG_DESIGNATOR) != std::string::npos)
 	{
 		int bugStart = initString.find(BUG_DESIGNATOR)+BUG_DESIGNATOR.size();
 		int bugEnd = initString.find(' ',  bugStart );
@@ -425,7 +425,7 @@ uint16_t MSPBSL_Connection5xx::CRC_Check(uint16_t* CRC_Return, uint32_t startAdd
 *        
 * \return the value returned by the connected BSL, or underlying connection layers
 ******************************************************************************/
-uint16_t MSPBSL_Connection5xx::TX_BSL_Version(string& versionString)
+uint16_t MSPBSL_Connection5xx::TX_BSL_Version(std::string& versionString)
 {
 
   uint16_t retValue = ACK;
@@ -591,7 +591,7 @@ uint16_t MSPBSL_Connection5xx::sendPacketExpectNothing(uint8_t* packet, uint16_t
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_Connection5xx::getErrorInformation( uint16_t err )
+std::string MSPBSL_Connection5xx::getErrorInformation( uint16_t err )
 {
 	return MSPBSL_Connection::getErrorInformation( err );
 }

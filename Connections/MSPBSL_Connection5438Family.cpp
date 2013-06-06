@@ -49,7 +49,7 @@
 *        
 * \return a MSPBSL_Connection5438Family class
 ******************************************************************************/
-MSPBSL_Connection5438Family::MSPBSL_Connection5438Family(string initString) : MSPBSL_Connection5xxUART( initString)
+MSPBSL_Connection5438Family::MSPBSL_Connection5438Family(std::string initString) : MSPBSL_Connection5xxUART( initString)
 {
 }
 
@@ -107,7 +107,7 @@ uint16_t MSPBSL_Connection5438Family::RX_Password(uint8_t* password)
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_Connection5438Family::getErrorInformation( uint16_t err )
+std::string MSPBSL_Connection5438Family::getErrorInformation( uint16_t err )
 {
 	return MSPBSL_Connection5xxUART::getErrorInformation( err );
 }

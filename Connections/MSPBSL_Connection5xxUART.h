@@ -56,12 +56,12 @@ class MSPBSL_Connection5xxUART : public MSPBSL_Connection5xx
 {
 public:
 
-	MSPBSL_Connection5xxUART(string initString);
+	MSPBSL_Connection5xxUART(std::string initString);
 	virtual ~MSPBSL_Connection5xxUART(void);
 
 	uint16_t setBaudRate(uint32_t baudRate);
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 
 };

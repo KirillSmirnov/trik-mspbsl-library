@@ -40,7 +40,7 @@
 #pragma once
 #include <boost/asio.hpp> // include boost
 #include <iostream>
-using namespace std;
+
 using namespace::boost::asio;
 
 #if defined(BOOST_WINDOWS) || defined(__CYGWIN__)

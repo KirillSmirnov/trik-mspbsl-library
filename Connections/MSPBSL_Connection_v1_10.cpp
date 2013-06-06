@@ -44,7 +44,7 @@
 *        
 * \return a MSPBSL_Connection_v1_10 class
 ******************************************************************************/
-MSPBSL_Connection_v1_10::MSPBSL_Connection_v1_10(string initString)   : MSPBSL_Connection1xx_2xx_4xx( initString)
+MSPBSL_Connection_v1_10::MSPBSL_Connection_v1_10(std::string initString)   : MSPBSL_Connection1xx_2xx_4xx( initString)
 {
 	MSPBSL_Connection_v1_10::patch_loaded=NO;
 }
@@ -275,7 +275,7 @@ uint16_t MSPBSL_Connection_v1_10::massErase(void)
 * \return the value returned by the connected BSL, or underlying connection layers
 ******************************************************************************/
 
-uint16_t MSPBSL_Connection_v1_10::TX_BSL_Version(string& versionString)
+uint16_t MSPBSL_Connection_v1_10::TX_BSL_Version(std::string& versionString)
 {
 	uint16_t retbuf = 0;
 	uint8_t data[2];
