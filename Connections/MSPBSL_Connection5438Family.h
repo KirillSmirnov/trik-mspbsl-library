@@ -42,12 +42,12 @@
 class MSPBSL_Connection5438Family : public MSPBSL_Connection5xxUART
 {
 public:
-	MSPBSL_Connection5438Family(string initString);
+	MSPBSL_Connection5438Family(std::string initString);
 	virtual ~MSPBSL_Connection5438Family(void);
 
 	uint16_t RX_Password(void);
 	uint16_t RX_Password(uint8_t* password);
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 };
 

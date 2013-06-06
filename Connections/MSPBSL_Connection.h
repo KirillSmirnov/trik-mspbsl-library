@@ -44,7 +44,6 @@
 #include "MSPBSL_PacketHandler.h"
 #include <boost/cstdint.hpp>
 #include <boost/lexical_cast.hpp>
-using namespace std;
 
 //Error header (top 8 bits) definitions
 #define MSLBSL_CONNECTION_HEADER     0x0100
@@ -80,16 +79,16 @@ public:
 	virtual uint16_t massErase(void) = 0;
 	virtual uint16_t RX_Password(void) = 0;
 	virtual uint16_t RX_Password(uint8_t* password) = 0;
-	virtual uint16_t TX_BSL_Version(string& versionString) = 0;
+	virtual uint16_t TX_BSL_Version(std::string& versionString) = 0;
 	virtual uint16_t setPC(uint32_t addr) = 0;
 	virtual uint16_t TX_DataBlock( uint8_t* data, uint32_t startAddr, uint32_t numBytes ) = 0;
 	virtual uint16_t RX_DataBlock( uint8_t* data, uint32_t startAddr, uint32_t numBytes ) = 0;
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 	virtual MSPBSL_PacketHandler* getPacketHandler();
 	virtual void setPacketHandler(MSPBSL_PacketHandler* protocol);
 
-	uint16_t loadFile(string datalocation);
+	uint16_t loadFile(std::string file);
 	uint8_t hextoint(char c);
 };

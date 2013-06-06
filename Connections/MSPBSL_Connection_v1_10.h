@@ -52,7 +52,7 @@ private:
 	uint8_t passwordbuffer[32];
 public:
 
-	MSPBSL_Connection_v1_10(string initString);
+	MSPBSL_Connection_v1_10(std::string initString);
 	virtual ~MSPBSL_Connection_v1_10(void);
 
 	virtual uint16_t TX_DataBlock( uint8_t* data, uint32_t startAddr16, uint32_t numBytes );
@@ -60,11 +60,11 @@ public:
 	virtual uint16_t RX_Password( uint8_t* password );
 	virtual uint16_t RX_Password(void);
 	virtual uint16_t massErase(void);
-	virtual uint16_t TX_BSL_Version(string& versionString);
+	virtual uint16_t TX_BSL_Version(std::string& versionString);
 	virtual uint16_t eraseCheck( uint32_t startAddr, uint32_t numBytes );
 	//virtual uint16_t eraseInfoMain(uint32_t addr);  //Workaround possible, but not able to reproduce bug
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 	uint16_t loadPatch(void);
 };

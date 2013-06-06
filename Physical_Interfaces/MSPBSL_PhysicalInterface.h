@@ -40,7 +40,6 @@
 #include <string>
 #include <boost/cstdint.hpp>
 
-using namespace std;
 
 //Error header (top 8 bits) definitions
 #define MSL_BSL_PHYSICAL_INTERFACE_HEADER  0x0300
@@ -112,7 +111,7 @@ public:
 *
 * \return the result of the command
 ******************************************************************************/
-	virtual uint16_t physicalInterfaceCommand( string command ) = 0;
+	virtual uint16_t physicalInterfaceCommand( std::string command ) = 0;
 
 /***************************************************************************//**
 * An error description function
@@ -124,6 +123,6 @@ public:
 *
 * \return A string describing the error code
 ******************************************************************************/
-	virtual string getErrorInformation( uint16_t err ) = 0;
+	virtual std::string getErrorInformation( uint16_t err ) = 0;
 
 };

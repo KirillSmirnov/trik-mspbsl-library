@@ -78,7 +78,7 @@
 class MSPBSL_Connection5xx : public MSPBSL_Connection
 {
 public:
-	MSPBSL_Connection5xx(string initString);
+	MSPBSL_Connection5xx(std::string initString);
 	virtual ~MSPBSL_Connection5xx(void);
 	
 
@@ -86,7 +86,7 @@ public:
 	uint16_t massErase(void);
 	uint16_t RX_Password(void);
 	uint16_t RX_Password(uint8_t* password);
-	uint16_t TX_BSL_Version(string& versionString);
+	uint16_t TX_BSL_Version(std::string& versionString);
 
 	
 	uint16_t setPC(uint32_t addr);
@@ -98,13 +98,13 @@ public:
 	uint16_t toggleInfo(void);
 	uint16_t TX_BufferSize(uint16_t* bufSize);
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 	//uint8_t TX_TXT_File(file)
 	//uint8_t RX_TXT_File(file)
 
 protected:
-	string bugList;
+	std::string bugList;
 	uint16_t sendPacketExpectNothing(uint8_t* packet, uint16_t packetSize);
 	uint16_t sendPacketExpectMessage(uint8_t* packet, uint16_t packetSize);
 

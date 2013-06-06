@@ -42,13 +42,13 @@
 #include <boost/cstdint.hpp>
 #include "MSPBSL_PhysicalInterfaceSerialUART.h"
 
-using namespace std;
+
 
 class MSPBSL_CRCEngine
 {
 public:
 
-	MSPBSL_CRCEngine(string initString);
+	MSPBSL_CRCEngine(std::string initString);
 
 	~MSPBSL_CRCEngine(void);
 

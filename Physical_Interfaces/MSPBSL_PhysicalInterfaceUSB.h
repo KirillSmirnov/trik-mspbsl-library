@@ -58,7 +58,7 @@ class MSPBSL_PhysicalInterfaceUSB : public MSPBSL_PhysicalInterface
 public:
 
 
-	MSPBSL_PhysicalInterfaceUSB(string initString);
+	MSPBSL_PhysicalInterfaceUSB(std::string initString);
 
 	virtual ~MSPBSL_PhysicalInterfaceUSB(void);
 
@@ -68,9 +68,9 @@ public:
 
     uint16_t RX_Bytes( uint8_t* buf, uint16_t numBytes);
 
-	uint16_t physicalInterfaceCommand( string command );
+	uint16_t physicalInterfaceCommand(std::string command );
 	
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 private:
 	hid_device* MSPBSL_Device;

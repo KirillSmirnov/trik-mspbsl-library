@@ -47,7 +47,7 @@
 *        
 * \return a MSPBSL_ConnectionFRAMFamily class
 ******************************************************************************/
-MSPBSL_ConnectionFRAMFamily::MSPBSL_ConnectionFRAMFamily(string initString) : MSPBSL_Connection5xxUART( initString)
+MSPBSL_ConnectionFRAMFamily::MSPBSL_ConnectionFRAMFamily(std::string initString) : MSPBSL_Connection5xxUART( initString)
 {
 }
 
@@ -97,7 +97,7 @@ uint16_t MSPBSL_ConnectionFRAMFamily::massErase(void)
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_ConnectionFRAMFamily::getErrorInformation( uint16_t err )
+std::string MSPBSL_ConnectionFRAMFamily::getErrorInformation( uint16_t err )
 {
 	return MSPBSL_Connection5xxUART::getErrorInformation( err );
 }

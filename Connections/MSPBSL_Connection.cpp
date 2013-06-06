@@ -97,17 +97,17 @@ uint8_t MSPBSL_Connection::hextoint(char hex){
 * 
 ******************************************************************************/
 
-uint16_t MSPBSL_Connection::loadFile(string datalocation)
+uint16_t MSPBSL_Connection::loadFile(std::string file)
 {
 	uint16_t retValue = ACK;
 	uint32_t i,j,block_start, block_end, block_offset=0, startadress, datasize, datapointer;
 	uint8_t lastblock=0;
-	string ignore = "\b\t\n\r\f\v "; //ignore those characters if they are between the strings. 
-	string hexchars = "0123456789abcdefABCDEF";
-	ifstream txt(datalocation.c_str(), ifstream::out); 
-	stringstream s;
+	std::string ignore = "\b\t\n\r\f\v "; //ignore those characters if they are between the strings. 
+	std::string hexchars = "0123456789abcdefABCDEF";
+	std::ifstream txt(file.c_str(), std::ifstream::out);
+	std::stringstream s;
 	s << txt.rdbuf();
-	string file = s.str();
+	std::string filestring = s.str();
 	txt.close();
 
 	while(!lastblock)
@@ -177,7 +177,7 @@ uint16_t MSPBSL_Connection::loadFile(string datalocation)
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_Connection::getErrorInformation( uint16_t err )
+std::string MSPBSL_Connection::getErrorInformation( uint16_t err )
 {
 	
 	switch( err )

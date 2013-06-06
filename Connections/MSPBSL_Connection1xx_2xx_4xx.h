@@ -68,14 +68,14 @@
 class MSPBSL_Connection1xx_2xx_4xx : public MSPBSL_Connection
 {
 public:
-	MSPBSL_Connection1xx_2xx_4xx(string initString);
+	MSPBSL_Connection1xx_2xx_4xx(std::string initString);
 	virtual ~MSPBSL_Connection1xx_2xx_4xx(void);
 	
 
 	virtual uint16_t massErase(void);
 	virtual uint16_t RX_Password(void);
 	virtual uint16_t RX_Password(uint8_t* password);
-	virtual uint16_t TX_BSL_Version(string& versionString);  //only in BSL versions 1.x > 1.5
+	virtual uint16_t TX_BSL_Version(std::string& versionString);  //only in BSL versions 1.x > 1.5
 
 	uint16_t setPC(uint32_t addr16);
 	virtual uint16_t TX_DataBlock( uint8_t* data, uint32_t startAddr16, uint32_t numBytes );
@@ -85,7 +85,7 @@ public:
 	virtual uint16_t eraseInfoMain(uint32_t addr);     
 
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 	virtual uint16_t eraseCheck( uint32_t startAddr, uint32_t numBytes );	//only in BSL versions >1.6x *
 	//uint16_t setMemOffset(uint16_t OffsetValue);					//only in BSL versions >2.12 *
@@ -100,7 +100,7 @@ public:
 	void setPacketHandler(MSPBSL_PacketHandler* protocol);
 
 protected:
-	string bugList;
+	std::string bugList;
 	MSPBSL_PacketHandler1xx_2xx_4xxUART* thePacketHandler1xx_2xx_4xx;
 	//uint16_t sendPacketExpectNothing(uint8_t* packet, uint16_t packetSize);
 	//uint16_t sendPacketExpectMessage(uint8_t* packet, uint16_t packetSize);
