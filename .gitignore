@@ -16,3 +16,13 @@ CMakeFiles
 cmake_install.cmake
 Makefile
 *.a
+CPackConfig.cmake
+CPackSourceConfig.cmake
+
+#binary files
+
+example-bsl
+example-burner
+install_manifest.txt
+libmsp430bsl.so*
+
