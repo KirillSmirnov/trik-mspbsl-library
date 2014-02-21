@@ -84,7 +84,7 @@ void MSPBSL_PacketHandler::setPhysicalInterface(MSPBSL_PhysicalInterface* con)
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_PacketHandler::getErrorInformation( uint16_t err )
+std::string MSPBSL_PacketHandler::getErrorInformation( uint16_t err )
 {
 	switch( err )
 	{

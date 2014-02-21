@@ -19,7 +19,7 @@ int main(void) {
   for (unsigned i=0; i<0x20000; i++)
     databuf[i] = 0x00FF;
 
-  string returnstring;
+  std::string returnstring;
   int i;
   std::cout << "Transmitting password... ";
   i = theBSLConnection->RX_Password(databuf);

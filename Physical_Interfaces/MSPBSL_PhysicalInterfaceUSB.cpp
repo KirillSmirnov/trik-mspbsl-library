@@ -199,8 +199,7 @@ uint16_t MSPBSL_PhysicalInterfaceUSB::RX_Bytes( uint8_t* buf, uint16_t numBytes 
 ******************************************************************************/
 uint16_t MSPBSL_PhysicalInterfaceUSB::physicalInterfaceCommand( std::string command )
 {
-
-	if (command.find( ENUMERATE_COMMAND ) !=std::string::npos)                  // if we wish to enumerate
+	if (command.find( ENUMERATE_COMMAND ) != std::string::npos)                  // if we wish to enumerate
 	{
 		MSPBSL_Device = hid_open(myVID, myPID, NULL);
      	
@@ -262,4 +261,9 @@ std::string MSPBSL_PhysicalInterfaceUSB::getErrorInformation( uint16_t err )
 		break;
 	}
 	return "unknown error number";
+}
+
+uint8_t MSPBSL_PhysicalInterfaceUSB::isValid()
+{
+	return (MSPBSL_Device != 0);
 }

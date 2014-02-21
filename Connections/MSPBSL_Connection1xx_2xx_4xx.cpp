@@ -300,7 +300,7 @@ uint16_t MSPBSL_Connection1xx_2xx_4xx::TX_BSL_Version(std::string& versionString
 {
 
   uint16_t retValue = ACK;
-  versionString = "";
+  std::versionString = "";
   uint8_t rxedDataPacket[16];
   uint8_t commandPacket[7];
 
@@ -512,7 +512,7 @@ uint16_t MSPBSL_Connection1xx_2xx_4xx::eraseInfoMain(uint32_t startAddr)
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_Connection1xx_2xx_4xx::getErrorInformation( uint16_t err )
+std::string MSPBSL_Connection1xx_2xx_4xx::getErrorInformation( uint16_t err )
 {
 	return MSPBSL_Connection::getErrorInformation( err );
 }

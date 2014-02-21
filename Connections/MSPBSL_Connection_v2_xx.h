@@ -47,15 +47,15 @@ class MSPBSL_Connection_v2_xx : public MSPBSL_Connection1xx_2xx_4xx
 {
 public:
 
-	MSPBSL_Connection_v2_xx(string initString);
+	MSPBSL_Connection_v2_xx(std::string initString);
 	virtual ~MSPBSL_Connection_v2_xx(void);
 
 
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 
 	uint16_t changeBaudrate( uint8_t D1, uint8_t D2, uint8_t D3 );  //only in derived classes of BSL version >1.6x
-	virtual uint16_t TX_BSL_Version(string& versionString);
+	virtual uint16_t TX_BSL_Version(std::string& versionString);
 
 
 };

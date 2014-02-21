@@ -43,7 +43,7 @@ class MSPBSL_PacketHandler5xxUSB : public MSPBSL_PacketHandler
 {
 public:
 
-	MSPBSL_PacketHandler5xxUSB(string initString);
+	MSPBSL_PacketHandler5xxUSB(std::string initString);
 
 	virtual ~MSPBSL_PacketHandler5xxUSB(void);
 	
@@ -53,6 +53,6 @@ public:
 	
 	uint16_t getMaxDataSize();
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 };
 

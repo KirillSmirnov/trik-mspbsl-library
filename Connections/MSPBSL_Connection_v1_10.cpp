@@ -78,6 +78,7 @@ uint16_t MSPBSL_Connection_v1_10::TX_DataBlock( uint8_t* data, uint32_t startAdd
 	uint16_t retValue = 0;
 	if(patch_loaded == NO)
 	{
+		retValue = load_patch();
 		retValue = loadPatch();
 	}
 	if(retValue != ACK)

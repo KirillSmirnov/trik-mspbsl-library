@@ -37,6 +37,11 @@
 */
 
 #include "MSPBSL_Connection.h"
+#include "MSPBSL_Connection5xx.h"
+#include "MSPBSL_CRCEngine.h"
+#include "MSPBSL_Connection5xxUSB.h"
+#include "MSPBSL_PhysicalInterfaceUSB.h"
+#include "MSPBSL_PacketHandler5xxUSB.h"
 
 /***************************************************************************//**
 * MSPBSL_Connection Class Destructor.
@@ -97,19 +102,24 @@ uint8_t MSPBSL_Connection::hextoint(char hex){
 * 
 ******************************************************************************/
 
-uint16_t MSPBSL_Connection::loadFile(std::string file)
+
+uint16_t MSPBSL_Connection::loadFile(std::string datalocation)
 {
 	uint16_t retValue = ACK;
 	uint32_t i,j,block_start, block_end, block_offset=0, startadress, datasize, datapointer;
 	uint8_t lastblock=0;
 	std::string ignore = "\b\t\n\r\f\v "; //ignore those characters if they are between the strings. 
 	std::string hexchars = "0123456789abcdefABCDEF";
-	std::ifstream txt(file.c_str(), std::ifstream::out);
+	std::ifstream txt(datalocation.c_str()); 
 	std::stringstream s;
 	s << txt.rdbuf();
-	std::string filestring = s.str();
+	std::string file = s.str();
 	txt.close();
+	uint16_t CRC_Return;
 
+	MSPBSL_CRCEngine* Engine = new MSPBSL_CRCEngine("5/6xx");
+
+	
 	while(!lastblock)
 	{
 		//get start and end of current data block
@@ -157,12 +167,21 @@ uint16_t MSPBSL_Connection::loadFile(std::string file)
 		}
 
 		datasize = datapointer;
-		retValue |= RX_DataBlock(data, startadress, datasize);
+		retValue |= RX_DataBlockFast(data, startadress, datasize);
+		{
+			//CRC Check
+			uint16_t retValue1 = retValue;
+			retValue |= CRC_Check(&CRC_Return,startadress,datasize);
+			retValue &= Engine->verify(data,datasize,CRC_Return);
+			if (retValue == retValue1) printf("%s\n","CRC verification block was completed");
+			//CRC Check
+
+		}
 		delete[] data;
+
 	}//parser mainloop
 
-
-
+	delete Engine;
 	return retValue;
 }
 
@@ -182,16 +201,16 @@ std::string MSPBSL_Connection::getErrorInformation( uint16_t err )
 	
 	switch( err )
 	{
-	case (GENERAL_BSL_CONNECTION_ERROR):
+		case (GENERAL_BSL_CONNECTION_ERROR):
 		return "General Connection Error Occured";
 		break;
-	case (UNEXPECTED_VALUE):
+		case (UNEXPECTED_VALUE):
 		return "an unexpected value was received by the BSL connection";
 		break;
-	case (DATA_VERIFICATION_ERROR):
+		case (DATA_VERIFICATION_ERROR):
 		return "the data verification was not successful";
 		break;
-	case (TXT_FILE_PARSER_ERROR):
+		case (TXT_FILE_PARSER_ERROR):
 		return "an error occured during the parsing of the txt file";
 		break;
 	}

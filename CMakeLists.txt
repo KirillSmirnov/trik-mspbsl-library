@@ -57,13 +57,10 @@ add_library(msp430bsl SHARED
 )
 set_target_properties(msp430bsl PROPERTIES VERSION 1.0.0 SOVERSION 1)
 
-add_executable(example-bsl
-               Example/main.cpp)
-add_executable(example-burner
-               Example/burner.cpp)
+add_executable(msp-flasher
+		Example/burner.cpp)
 
-target_link_libraries(example-bsl msp430bsl ${HIDAPI_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} -lpthread -lm )
-target_link_libraries(example-burner msp430bsl ${HIDAPI_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} -lpthread -lm )
+target_link_libraries(msp-flasher msp430bsl ${HIDAPI_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} -lpthread -lm )
 
 set(CMAKE_INSTALL_PREFIX /usr)
 set(CPACK_BINARY_RPM ON)
@@ -74,8 +71,7 @@ set(CPACK_PACKAGE_VERSION 1.0.0)
 include(CPack)
 
 install(TARGETS msp430bsl DESTINATION lib)
-install(TARGETS example-bsl DESTINATION sbin)
-install(TARGETS example-burner DESTINATION sbin)
+install(TARGETS msp-flasher DESTINATION sbin)
 install(DIRECTORY ${PROJECT_INCLUDE_DIR}
     DESTINATION include
     FILES_MATCHING

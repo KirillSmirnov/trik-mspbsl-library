@@ -51,11 +51,11 @@ public:
 
 	~MSPBSL_Factory(void);
 
-	static MSPBSL_Connection* getMSPBSL_Connection(string init);
+	static MSPBSL_Connection* getMSPBSL_Connection(std::string init);
 
-	static string expandInitString( string init );
+	static std::string expandInitString( std::string init );
 
-	static string errorCode (uint16_t error );
+	static std::string errorCode (uint16_t error );
 
 };
 

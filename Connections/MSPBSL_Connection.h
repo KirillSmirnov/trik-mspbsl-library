@@ -39,11 +39,13 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <iostream>
 #include <fstream>
 #include <streambuf>
 #include "MSPBSL_PacketHandler.h"
 #include <boost/cstdint.hpp>
 #include <boost/lexical_cast.hpp>
+
 
 //Error header (top 8 bits) definitions
 #define MSLBSL_CONNECTION_HEADER     0x0100
@@ -83,12 +85,13 @@ public:
 	virtual uint16_t setPC(uint32_t addr) = 0;
 	virtual uint16_t TX_DataBlock( uint8_t* data, uint32_t startAddr, uint32_t numBytes ) = 0;
 	virtual uint16_t RX_DataBlock( uint8_t* data, uint32_t startAddr, uint32_t numBytes ) = 0;
-
+	virtual uint16_t RX_DataBlockFast( uint8_t* data, uint32_t startAddr, uint32_t numBytes ) = 0;
+	virtual uint16_t CRC_Check(uint16_t* CRC_Return, uint32_t startAddr, uint16_t numBytes)= 0;
 	virtual std::string getErrorInformation( uint16_t err );
 
 	virtual MSPBSL_PacketHandler* getPacketHandler();
 	virtual void setPacketHandler(MSPBSL_PacketHandler* protocol);
 
-	uint16_t loadFile(std::string file);
+	uint16_t loadFile(std::string datalocation);
 	uint8_t hextoint(char c);
 };

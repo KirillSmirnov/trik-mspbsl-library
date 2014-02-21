@@ -44,7 +44,7 @@
 *        
 * \return a MSPBSL_Connection_v2_xx class
 ******************************************************************************/
-MSPBSL_Connection_v2_xx::MSPBSL_Connection_v2_xx(string initString) : MSPBSL_Connection1xx_2xx_4xx( initString)
+MSPBSL_Connection_v2_xx::MSPBSL_Connection_v2_xx(std::string initString) : MSPBSL_Connection1xx_2xx_4xx( initString)
 {
 }
 
@@ -109,7 +109,7 @@ uint16_t MSPBSL_Connection_v2_xx::changeBaudrate( uint8_t D1, uint8_t D2, uint8_
 * \return the value returned by the connected BSL, or underlying connection layers
 ******************************************************************************/
 
-uint16_t MSPBSL_Connection_v2_xx::TX_BSL_Version(string& versionString)
+uint16_t MSPBSL_Connection_v2_xx::TX_BSL_Version(std::string& versionString)
 {
 	uint16_t retbuf = 0;
 	uint8_t data[2];
@@ -138,7 +138,7 @@ uint16_t MSPBSL_Connection_v2_xx::TX_BSL_Version(string& versionString)
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_Connection_v2_xx::getErrorInformation( uint16_t err )
+std::string MSPBSL_Connection_v2_xx::getErrorInformation( uint16_t err )
 {
 	return MSPBSL_Connection1xx_2xx_4xx::getErrorInformation( err );
 }

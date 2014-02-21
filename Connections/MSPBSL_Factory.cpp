@@ -49,6 +49,7 @@
 #include "MSPBSL_Connection5xxUSB.h"
 #include "MSPBSL_Connection5xxUART.h"
 #include "MSPBSL_Connection5xx.h"
+#if 0
 #include "MSPBSL_Connection1xx_2xx_4xx.h"
 #include "MSPBSL_Connection_v1_10.h"
 #include "MSPBSL_Connection_v1_3x.h"
@@ -56,6 +57,7 @@
 #include "MSPBSL_Connection_v1_6x.h"
 #include "MSPBSL_Connection_v2_xx.h"
 #include "MSPBSL_Connection_v2_1x.h"
+#endif
 // Packet Handlers
 #include "MSPBSL_PacketHandler5xxUART.h"
 #include "MSPBSL_PacketHandler5xxUSB.h"
@@ -127,18 +129,18 @@ MSPBSL_Factory::~MSPBSL_Factory(void)
 *        
 * \return a MSPBSL_Connection class
 ******************************************************************************/
-MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(string initString)
+MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(std::string initString)
 {
 	initString = MSPBSL_Factory::expandInitString( initString );
 	MSPBSL_Connection* theBSLConnection = 0;
 	//
-	if ( (initString.find( UART_5XX_STRING ) !=string::npos) || (initString.find( UART_FRAM_STRING ) !=string::npos)) // if it's a 5xx UART....
+	if ( (initString.find( UART_5XX_STRING ) !=std::string::npos) || (initString.find( UART_FRAM_STRING ) !=std::string::npos)) // if it's a 5xx UART....
 	{
-		if(initString.find( BUG_SHORT_PASSWORD ) !=string::npos )           // short password means 5438
+		if(initString.find( BUG_SHORT_PASSWORD ) !=std::string::npos )           // short password means 5438
 		{
 			theBSLConnection = new MSPBSL_Connection5438Family( initString );
 		}
-		else if(initString.find( UART_FRAM_STRING ) !=string::npos )           // FRAM Device
+		else if(initString.find( UART_FRAM_STRING ) !=std::string::npos )           // FRAM Device
 		{
 			theBSLConnection = new MSPBSL_ConnectionFRAMFamily( initString );
 		}
@@ -153,7 +155,7 @@ MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(string initString)
 		theBSLConnection->setPacketHandler(p);
 	} // all 5XX UART BSLs handled
 #ifdef MSPBSL_USB
-	else if (initString.find( USB_5XX_STRING ) !=string::npos)                  // if it's a 5xx USB....
+	else if (initString.find( USB_5XX_STRING ) !=std::string::npos)                  // if it's a 5xx USB....
 	{
 		theBSLConnection = new MSPBSL_Connection5xx( initString );
 		MSPBSL_PhysicalInterfaceUSB* s  = new MSPBSL_PhysicalInterfaceUSB( initString ); // Parity handled in object;
@@ -162,6 +164,7 @@ MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(string initString)
 		theBSLConnection->setPacketHandler(p);
 	} // all 5XX USB BSLs handled
 #endif
+#if 0
 	else if ( initString.find( UART_1XX_2XX_4XX_STRING ) != string::npos)		//if it's a 1xx/2xx/4xx UART device
 	{
 		if(initString.find( UART_110_STRING ) !=string::npos )
@@ -180,11 +183,11 @@ MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(string initString)
 		{
 			theBSLConnection = new MSPBSL_Connection_v1_6x( initString );
 		}
-		else if(initString.find( UART_202_STRING ) != string::npos )
+		else if(initString.find( UART_202_STRING ) !=string::npos )
 		{
 			theBSLConnection = new MSPBSL_Connection_v2_xx( initString );
 		}
-		else if(initString.find( UART_21X_STRING ) != string::npos )
+		else if(initString.find( UART_21X_STRING ) !=string::npos )
 		{
 			theBSLConnection = new MSPBSL_Connection_v2_1x( initString );
 		}
@@ -200,12 +203,7 @@ MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(string initString)
 		p->setPhysicalInterface( s );
 		theBSLConnection->setPacketHandler(p);
 	} // all 1xx/2xx/4xx UART BSLs handled
-	else
-	{
-		return NULL;	//no init String was found in the DeviceList.txt
-	}
-
->>>>>>> Implemented 1/2/4xx-Options in Factory, Started DeviceList
+ #endif
 	return theBSLConnection;
 }
 
@@ -220,29 +218,22 @@ MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(string initString)
 *
 * \return an expanded parameter string
 ******************************************************************************/
-string MSPBSL_Factory::expandInitString( string init )
+std::string MSPBSL_Factory::expandInitString( std::string init )
 {
 	uint32_t i,j,k;
 
-	string ignore = "\b\t\n\r\f\v "; //ignore those characters if they are between the strings. 
+	std::string ignore = "\b\t\n\r\f\v "; //ignore those characters if they are between the strings. 
 
-	ifstream t("MSPBSL_Device_List.txt", ifstream::out); // for testing purposes with VisualStudio, this file should be in the same
-													     // folder as the *.vcxproj files. e.g. in  $ProjectDir\BSL_DLL
-														 // Absolute data paths work as well.
-	stringstream s;
+	std::ifstream t("MSPBSL_Device_List.txt", std::ifstream::out); // TODO
+	std::stringstream s;
 	s << t.rdbuf();
-	string replaceList = s.str();
+	std::string replaceList = s.str();
 	t.close();
 
 	init += ","; // add string at back since we search for strings with comma following (to distinguish between A/non-A versions)
 	k=0;
 
-	if(replaceList.size() == 0)
-	{
-		return init;
-	}
-
-	while( (replaceList.find(init) != string::npos) && (k < 100) )
+	while( (replaceList.find(init) != std::string::npos) && (k < 100) )
 	{
 		i = replaceList.find( init ) + init.length();
 		i = replaceList.find_first_not_of(ignore , i);
@@ -267,7 +258,7 @@ string MSPBSL_Factory::expandInitString( string init )
 *
 * \return a string explanation of that error code
 ******************************************************************************/
-string MSPBSL_Factory::errorCode (uint16_t error )
+std::string MSPBSL_Factory::errorCode (uint16_t error )
 {
 	return "to do";
 }
