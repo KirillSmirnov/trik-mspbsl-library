@@ -42,7 +42,7 @@
 #include <hidapi/hidapi.h>
 
 
-//using namespace std;
+//
 
 #define ENUMERATE_COMMAND    "ENUMERATE:"
 #define DE_ENUMERATE_COMMAND "DE-ENUMERATE:"
@@ -68,11 +68,15 @@ public:
 
     uint16_t RX_Bytes( uint8_t* buf, uint16_t numBytes);
 
-	uint16_t physicalInterfaceCommand(std::string command );
+	uint16_t physicalInterfaceCommand( std::string command );
+
+	uint8_t isValid();
 	
 	virtual std::string getErrorInformation( uint16_t err );
-
+	
 private:
+
 	hid_device* MSPBSL_Device;
+	
 };
 

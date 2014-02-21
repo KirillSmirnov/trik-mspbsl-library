@@ -42,7 +42,7 @@
 #include "MSPBSL_PhysicalInterfaceSerialUART.h"
 #include "MSPBSL_PacketHandler.h"
 
-using namespace std;
+
 
 //UART SPECIFIC CONSTANTS and COMMANDS
 #define UART_HEADER                     0x80
@@ -66,7 +66,7 @@ class MSPBSL_PacketHandler5xxUART : public MSPBSL_PacketHandler
 {
 public:
 
-	MSPBSL_PacketHandler5xxUART(string initString);
+	MSPBSL_PacketHandler5xxUART(std::string initString);
 
 	virtual ~MSPBSL_PacketHandler5xxUART(void);
 	
@@ -77,7 +77,7 @@ public:
 
 	uint16_t getMaxDataSize();
 
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 	
 };
 

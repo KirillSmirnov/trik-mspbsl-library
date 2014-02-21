@@ -50,7 +50,7 @@
 *
 * \return a new MSPBSL_PacketHandler5xxUART object
 ******************************************************************************/
-MSPBSL_PacketHandler5xxUART::MSPBSL_PacketHandler5xxUART(string initString)
+MSPBSL_PacketHandler5xxUART::MSPBSL_PacketHandler5xxUART(std::string initString)
 {
 	//TODO: INIT CRC ENGINE
 }
@@ -87,7 +87,7 @@ uint16_t MSPBSL_PacketHandler5xxUART::TX_Packet( uint8_t* buf, uint16_t bufSize 
 		return SENT_PACKET_SIZE_EXCEEDS_BUFFER;
 	} 
 	// TODO: CHANGE TO INIT STRING BASED
-    MSPBSL_CRCEngine crcEngine("5/6xx");
+    MSPBSL_CRCEngine crcEngine("5xx_CRC");
 	crcEngine.initEngine( 0xFFFF );
 	crcEngine.addBytes(buf,bufSize);
 
@@ -218,7 +218,7 @@ uint16_t MSPBSL_PacketHandler5xxUART::getMaxDataSize()
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_PacketHandler5xxUART::getErrorInformation( uint16_t err )
+std::string MSPBSL_PacketHandler5xxUART::getErrorInformation( uint16_t err )
 {
 	switch( err )
 	{

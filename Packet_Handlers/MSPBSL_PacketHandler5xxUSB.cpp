@@ -47,7 +47,7 @@
 *        
 * \return a MSPBSL_PacketHandler5xxUSB class
 ******************************************************************************/
-MSPBSL_PacketHandler5xxUSB::MSPBSL_PacketHandler5xxUSB(string initString)
+MSPBSL_PacketHandler5xxUSB::MSPBSL_PacketHandler5xxUSB(std::string initString)
 {
 }
 
@@ -204,7 +204,7 @@ uint16_t MSPBSL_PacketHandler5xxUSB::getMaxDataSize()
 *
 * \return A string describing the error code
 ******************************************************************************/
-string MSPBSL_PacketHandler5xxUSB::getErrorInformation( uint16_t err )
+std::string MSPBSL_PacketHandler5xxUSB::getErrorInformation( uint16_t err )
 {
 	return MSPBSL_PacketHandler::getErrorInformation( err );
 }

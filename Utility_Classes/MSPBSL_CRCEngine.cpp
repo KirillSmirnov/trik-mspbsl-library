@@ -60,7 +60,7 @@ uint16_t byteCount;
 MSPBSL_CRCEngine::MSPBSL_CRCEngine(std::string initString)
 {
 
-	if( initString.compare("5/6xx") == 0 ){
+	if( initString.compare("5/6xxx") == 0 ){
 		state = STATE_5xx;
 	}
 	else if ( initString.compare("1/2/4xx") == 0 ){

@@ -41,7 +41,7 @@
 #include <vector>
 #include "MSPBSL_PhysicalInterface.h"
 #include <boost/cstdint.hpp>
-using namespace std;
+
 
 //Error header (top 8 bits) definitions
 #define MSL_BSL_PACKET_HANDLER_HEADER      0x0200
@@ -76,7 +76,7 @@ public:
 
 	virtual uint16_t getMaxDataSize() = 0;
 	
-	virtual string getErrorInformation( uint16_t err );
+	virtual std::string getErrorInformation( uint16_t err );
 	
 	MSPBSL_PhysicalInterface* getPhysicalInterface();
 	void setPhysicalInterface(MSPBSL_PhysicalInterface* con);

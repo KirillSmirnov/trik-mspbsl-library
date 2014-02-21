@@ -74,6 +74,7 @@ MSPBSL_Connection_v1_6x::~MSPBSL_Connection_v1_6x(void)
 * \return the value returned by the connected BSL, or underlying connection layers
 ******************************************************************************/
 
+uint16_t MSPBSL_Connection_v1_6x::ChangeBaudrate( uint8_t D1, uint8_t D2, uint8_t D3 )
 uint16_t MSPBSL_Connection_v1_6x::changeBaudrate( uint8_t D1, uint8_t D2, uint8_t D3 )
 {
   uint8_t changeBaudrateCommand[7];
