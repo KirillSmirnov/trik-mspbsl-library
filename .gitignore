@@ -25,4 +25,4 @@ example-bsl
 example-burner
 install_manifest.txt
 libmsp430bsl.so*
-
+msp-flasher

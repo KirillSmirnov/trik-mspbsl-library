@@ -23,12 +23,12 @@ MSPBSL_PacketHandler5xxUSB* PacketHandler;
 
 static const char *optString = "r:vmo:bh";
 struct globalArgs_t {
-	int version;                
-	std::string inFile;    
+	int version;
+	std::string inFile;
 	int massErase;
 	int newBsl;
 	int resetTime;
-	int help;     
+	int help;
 } globalArgs;
 
 int CheckPassword(MSPBSL_Connection5xxUSB* theBSLConnection)
@@ -38,7 +38,7 @@ int CheckPassword(MSPBSL_Connection5xxUSB* theBSLConnection)
 		databuf[i] = 0x00FF;
 	int i = (theBSLConnection)->RX_Password(databuf);
 	printf("%s: %s \n",__func__ ,(i == EXIT_SUCCESS ? "OK" : "FAILED"));
-	return i; 
+	return i;
 }
 
 int LoadBSL(MSPBSL_Connection5xxUSB* theBSLConnection)
@@ -59,7 +59,7 @@ int PrintBSLVersion(MSPBSL_Connection5xxUSB* theBSLConnection)
 int MassErase(MSPBSL_Connection5xxUSB *theBSLConnection)
 {
 	int i = theBSLConnection->massErase();
-	printf("%s: %s \n",__func__ ,(i == EXIT_SUCCESS ? "OK" : "FAILED")); 
+	printf("%s: %s \n",__func__ ,(i == EXIT_SUCCESS ? "OK" : "FAILED"));
 	return i;
 }
 
@@ -95,7 +95,7 @@ int Run (MSPBSL_Connection5xxUSB *theBSLConnection,uint32_t addr)
 {
 	int i = theBSLConnection->setPC(addr);
 	printf("%s: %s \n",__func__ ,(i == EXIT_SUCCESS ? "OK" : "FAILED"));
-	return i; 
+	return i;
 }
 
 int LoadFirmware(MSPBSL_Connection5xxUSB *theBSLConnection,std::string Firmware)
@@ -107,15 +107,15 @@ int LoadFirmware(MSPBSL_Connection5xxUSB *theBSLConnection,std::string Firmware)
 		return EXIT_WITH_ERROR;
 	}
 	if (!globalArgs.massErase) MassErase(theBSLConnection);
-	if (!globalArgs.newBsl) LoadBSL (theBSLConnection); 
+	if (!globalArgs.newBsl) LoadBSL (theBSLConnection);
 
 	printf("Loading firmware...");
 	int i = theBSLConnection->loadFile(Firmware);
-	printf("%s: %s \n",__func__ ,(i == EXIT_SUCCESS ? "OK" : "FAILED")); 
+	printf("%s: %s \n",__func__ ,(i == EXIT_SUCCESS ? "OK" : "FAILED"));
 
 	int j =Run(theBSLConnection, DefaultAddr);
 
-	return (i & j); 
+	return (i & j);
 }
 
 void Reset(int time)
@@ -132,7 +132,7 @@ void Reset(int time)
 		fwrite(buf1,sizeof(buf1),1,file);
 		fflush(file);
 		sleep(time);
-		fclose (file);		
+		fclose (file);
 	}
 	else printf("%s\n","Not found reset gpio!");
 }
@@ -151,10 +151,10 @@ void ArgvParser(int argc, char* argv[])
 {
 	int opt = 0;
 	ArgvInit();
-	
+
 	opt = getopt(argc, argv, optString);
 
-	while (opt != LAST_OPTION) 
+	while (opt != LAST_OPTION)
 	{
 		switch (opt) {
 			case 'v':
@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
 	ArgvParser(argc,argv);
 
 	if (globalArgs.resetTime != 0)
-	{ 
+	{
 		Reset(globalArgs.resetTime);
 		return EXIT_SUCCESS;
 	}
