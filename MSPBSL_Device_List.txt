@@ -1,3 +1,13 @@
+This file allows the Factory to expand the init string to a format that contains all the necessary data (BSL Version, UART Baudrate, Invoke method, etc.)
+to initialize the connection and the underlying classes.
+The parser looks for the init string followed by a comma and recursively replaces it by the string after the comma.
+As whitespaces, tabs and newlines are being ignored, every repacement string has to be followed by a semicolon.
+
+Syntax example:
+[initString],					[replacementString];
+
+
+***Head of List
 DEVICE:5438_FAMILY,             	  	UART_5XX PARITY:NONE BUG:SHORT_PASSWORD;
 DEVICE:5xx_STANDARD_UART,			UART_5XX;
 DEVICE:5xx_STANDARD_USB,         		USB_5XX;
@@ -164,6 +174,7 @@ DEVICE:MSP430F249,				DEVICE:2.02_STANDART_UART;
 
 DEVICE:MSP430F2616,				DEVICE:2.1X_STANDART_UART;
 DEVICE:MSP430F2617,				DEVICE:2.1X_STANDART_UART;
+DEVICE:MSP430F2618,				DEVICE:2.1X_STANDART_UART;
 DEVICE:MSP430F2619,				DEVICE:2.1X_STANDART_UART;
 DEVICE:MSP430F47126,				DEVICE:2.1X_STANDART_UART;
 DEVICE:MSP430F47127,				DEVICE:2.1X_STANDART_UART;

@@ -132,7 +132,7 @@ MSPBSL_Factory::~MSPBSL_Factory(void)
 MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(std::string initString)
 {
 	initString = MSPBSL_Factory::expandInitString( initString );
-	MSPBSL_Connection* theBSLConnection;
+	MSPBSL_Connection* theBSLConnection = 0;
 	//
 	if ( (initString.find( UART_5XX_STRING ) !=std::string::npos) || (initString.find( UART_FRAM_STRING ) !=std::string::npos)) // if it's a 5xx UART....
 	{
@@ -154,6 +154,7 @@ MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(std::string initString)
 		p->setPhysicalInterface( s );
 		theBSLConnection->setPacketHandler(p);
 	} // all 5XX UART BSLs handled
+#ifdef MSPBSL_USB
 	else if (initString.find( USB_5XX_STRING ) !=std::string::npos)                  // if it's a 5xx USB....
 	{
 		theBSLConnection = new MSPBSL_Connection5xx( initString );
@@ -162,6 +163,7 @@ MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(std::string initString)
 		p->setPhysicalInterface( s );
 		theBSLConnection->setPacketHandler(p);
 	} // all 5XX USB BSLs handled
+#endif
 #if 0
 	else if ( initString.find( UART_1XX_2XX_4XX_STRING ) != string::npos)		//if it's a 1xx/2xx/4xx UART device
 	{
@@ -202,7 +204,6 @@ MSPBSL_Connection* MSPBSL_Factory::getMSPBSL_Connection(std::string initString)
 		theBSLConnection->setPacketHandler(p);
 	} // all 1xx/2xx/4xx UART BSLs handled
  #endif
-
 	return theBSLConnection;
 }
 

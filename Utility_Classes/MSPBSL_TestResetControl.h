@@ -67,8 +67,7 @@ public:
 	{
 		state = initState;
 	}; // constructor
-
-  boost::system::error_code store( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error ) const
+	boost::system::error_code store( BOOST_ASIO_OPTION_STORAGE& storage, boost::system::error_code& error ) const
 	{
 #if defined( MSPBSL_ON_WIN )
 		if( state )

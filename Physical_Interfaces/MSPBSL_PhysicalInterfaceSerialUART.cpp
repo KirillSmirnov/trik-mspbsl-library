@@ -65,7 +65,7 @@ const char *PORT = "dev/ttyS3";
 *        COM:    The COM port to use
 *           COM1 (any com number acceptable)
 *        BAUD:   The initial baud rate to start with
-*           4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000
+           4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000
 *        PARITY: Specifies the Partity bit
 *           EVEN, ODD, NONE
 *        INVOKE: Specifies which invoke sequence to use
