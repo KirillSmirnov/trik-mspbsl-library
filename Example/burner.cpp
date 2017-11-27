@@ -115,7 +115,7 @@ int LoadFirmware(MSPBSL_Connection5xxUSB *theBSLConnection,std::string Firmware)
 
 	int j =Run(theBSLConnection, DefaultAddr);
 
-	return (i & j);
+	return (i && j);
 }
 
 void Reset(int time)
@@ -126,7 +126,7 @@ void Reset(int time)
 		printf("%s\n", "Reseting...");
 		char buf1[] = "1\n";
 		char buf0[] = "0\n";
-		fwrite(buf0,sizeof(buf1),1,file);
+		fwrite(buf0,sizeof(buf0),1,file);
 		fflush(file);
 		sleep(time);
 		fwrite(buf1,sizeof(buf1),1,file);
