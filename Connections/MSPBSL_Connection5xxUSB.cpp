@@ -121,10 +121,19 @@ uint16_t MSPBSL_Connection5xxUSB::loadRAM_BSL(uint8_t* password)
 	
 	uint16_t retValue = ACK;
 	retValue = RX_Password( password );
+	if (retValue == BSL_PASSWORD_ERROR)
+	{
+		// Wrong password initiates mass erase.
+		// Wait until device is ready...
+		boost::this_thread::sleep( boost::posix_time::seconds(2) );
+		// ... and try again. Default password must be accepted now.
+		retValue = RX_Password( password );
+	}
 	if( retValue != ACK )
 	{
 		return retValue;
 	}
+
 	retValue = RX_DataBlockFast( RAM_BSL_00_05_04_34, 0x2500, sizeof RAM_BSL_00_05_04_34  );
 	if( retValue != ACK )
 	{
