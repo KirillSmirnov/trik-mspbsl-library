@@ -59,7 +59,10 @@ int PrintBSLVersion(MSPBSL_Connection5xxUSB* theBSLConnection)
 int MassErase(MSPBSL_Connection5xxUSB *theBSLConnection)
 {
 	int i = theBSLConnection->massErase();
-	printf("%s: %s \n",__func__ ,(i == EXIT_SUCCESS ? "OK" : "FAILED"));
+	if (i == UNKNOWN_COMMAND) // MSP430F5510 does not support mass erase
+		printf("%s: UNSUPPORTED \n", __func__);
+	else
+		printf("%s: %s \n",__func__ ,(i == EXIT_SUCCESS ? "OK" : "FAILED"));
 	return i;
 }
 
